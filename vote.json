@@ -1,0 +1,37 @@
+{
+    "containerDefinitions": [{
+        "name": "vote-app",
+        "image": "807347334860.dkr.ecr.us-east-1.amazonaws.com/ezdoc-ui:latest",
+        "portMappings": [{
+            "name": "vote-port",
+            "containerPort": 4200,
+            "hostPort": 4200,
+            "protocol": "tcp",
+            "appProtocol": "http"
+        }],
+        "environmentFiles": [],
+        "ulimits": [],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/vote-svc",
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "ecs"
+            },
+            "secretOptions": []
+        }
+    }],
+    "cpu": "1024",
+    "memory": "3072",
+    "family": "vote",
+    "executionRoleArn": "arn:aws:iam::807347334860:role/ECSTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
+}
